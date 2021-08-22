@@ -1,0 +1,16 @@
+version: '3.6'
+services:
+  bald-wars-database:
+    container_name: bald-wars-database
+    image: mongo:5.0.2
+  bald-wars-api:
+    container_name: bald-wars-api
+    image: node:16.6.1-alpine3.13
+    ports:
+      - '${API_PORT}:${API_PORT}'
+    volumes:
+      - './backend:/app'
+    env_file:
+      - .env
+    working_dir: /app
+    entrypoint: sh -c "npm i && npm start"

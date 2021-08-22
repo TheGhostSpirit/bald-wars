@@ -13,7 +13,7 @@ professionnels de développer leurs compétences en développant leur propre IA.
 Bald Wars est un jeu de programmation d'IA dans lequel on doit créer le guerrier le plus puissant et vaincre ses ennemis.
 
 L’Intelligence Artificielle devra être développée depuis le site web, dans un langage de
-programmation, de préférence JavaScript. L’implémentation d’un autre langage est un plus, JS étant prioritaire.
+programmation, de préférence JavaScript.
 
 ## Description fonctionnelle du besoin
 
