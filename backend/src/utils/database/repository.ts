@@ -1,4 +1,4 @@
-import { Collection, Filter, FindOptions, ObjectId, OptionalId } from 'mongodb';
+import { Collection, Filter, ObjectId, OptionalId, Projection } from 'mongodb';
 
 import { objectId } from './object-id';
 
@@ -26,8 +26,8 @@ export class Repository<T> {
    * @param projection you may specifiy a projection to return only specific fields of the matched documents.
    * @returns an array of the collection elements.
    */
-  async find(filter: Filter<T>, projection?: FindOptions<T>): Promise<T[]> {
-    return this.collection.find(filter, projection).toArray();
+  async find(filter: Filter<T>, projection?: Projection<T>): Promise<T[]> {
+    return this.collection.find(filter, { projection }).toArray();
   }
 
   /**
@@ -44,8 +44,8 @@ export class Repository<T> {
    * @param projection you may specifiy a projection to return only specific fields of the matched document.
    * @returns an element or undefined if it is not found.
    */
-  async findById(id: ObjectId, projection?: FindOptions<T>): Promise<T | undefined> {
-    return this.collection.findOne({ _id: id }, projection);
+  async findById(id: ObjectId, projection?: Projection<T>): Promise<T | undefined> {
+    return this.collection.findOne({ _id: id }, { projection });
   }
 
   /**
@@ -54,17 +54,17 @@ export class Repository<T> {
    * @param projection you may specifiy a projection to return only specific fields of the matched document.
    * @returns an element or undefined if is is not found.
    */
-  async findOne(filter: Filter<T>, projection?: FindOptions<T>): Promise<T | undefined> {
-    return this.collection.findOne(filter, projection);
+  async findOne(filter: Filter<T>, projection?: Projection<T>): Promise<T | undefined> {
+    return this.collection.findOne(filter, { projection });
   }
 
   /**
    * Inserts one element in the collection.
    * @param entity the element to insert.
-   * @returns a boolean indicating if the operation succeeded or not.
+   * @returns the id of the newly inserted element.
    */
   async insertOne(entity: OptionalId<T>): Promise<{ id: ObjectId }> {
-    return this.collection.insertOne(entity).then(res => ({ id: res.insertedId as ObjectId}));
+    return this.collection.insertOne(entity).then(res => ({ id: res.insertedId as ObjectId }));
   }
 
   /**

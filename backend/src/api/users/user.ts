@@ -1,12 +1,11 @@
+import { Character } from './characters/character';
+
 export interface User {
   displayName: string;
   email: string;
   elo: number;
-  battles: {
-    participated: number;
-    won: number;
-    lost: number;
-  };
+  battles: unknown[];
+  characters: Character[];
 }
 
 export const defaultUser = (): User => {
@@ -14,10 +13,7 @@ export const defaultUser = (): User => {
     displayName: '',
     email: '',
     elo: 1400,
-    battles: {
-      participated: 0,
-      won: 0,
-      lost: 0,
-    },
+    battles: [],
+    characters: []
   };
 };

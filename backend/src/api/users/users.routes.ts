@@ -19,8 +19,8 @@ const routes: Route[] = [
   {
     method: 'post',
     path: '/',
-    handler: usersController.create,
-  },
+    handler: usersController.create
+  }
 ];
 
 export default routes;

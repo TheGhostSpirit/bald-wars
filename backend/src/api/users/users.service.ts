@@ -8,12 +8,14 @@ import { CreateUserType } from './users.schema';
 const list = async (
   repository: Repository<User>
 ): Promise<User[]> => {
-  return repository.findAll();
+  return repository.find(
+    {}, { characters: 0 }
+  );
 };
 
 const findOne = async (
   repository: Repository<User>,
-  id: ObjectId,
+  id: ObjectId
 ): Promise<User | undefined> => {
   return repository.findById(id);
 };
