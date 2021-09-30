@@ -1,11 +1,17 @@
-<!-- <div class="app-home">
-  <h1>Model Manager</h1>
-  <div *ngIf="!auth.isLoggedIn">
-    <p>Log in to manage your models!</p>
-    <button mat-stroked-button (click)="auth.login()">Sign in</button>
+<div class="position-relative overflow-hidden text-center bg-light">
+  <div class="col-5 p-5 mx-auto my-5">
+    <h1 class="display-4 font-weight-normal">Bald Wars</h1>
+    <div *ngIf="!auth.isLoggedIn">
+      <p class="lead font-weight-normal">
+        Login to begin the adventure now!
+      </p>
+      <button class="btn btn-outline-secondary" (click)="auth.login()">Log in</button>
+    </div>
+    <div *ngIf="auth.isLoggedIn">
+      <p class="lead font-weight-normal">
+        Start working on my characters now!
+      </p>
+      <button class="btn btn-outline-secondary" routerLink="/profile">My Characters</button>
+    </div>
   </div>
-  <div *ngIf="auth.isLoggedIn">
-    <p>Import, edit and deploy your API Models!</p>
-    <button mat-stroked-button routerLink="/models">My Models</button>
-  </div>
-</div> -->
+</div>
