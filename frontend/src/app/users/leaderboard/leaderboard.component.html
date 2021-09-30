@@ -1,0 +1,28 @@
+<div class="text-center p-5">
+  <h1>Leaderboards</h1>
+  <table class="mt-5 table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>ELO</th>
+        <th>Battles fought</th>
+        <th>Battles won</th>
+        <th>Battles lost</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of rankings; let i = index">
+        <th>{{ i + 1 }}</th>
+        <td>{{ user.displayName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.elo }}</td>
+        <td>{{ user.battles.fought }}</td>
+        <td>{{ user.battles.won }}</td>
+        <td>{{ user.battles.lost }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-outline-dark mt-5" routerLink="/">Home</button>
+</div>
