@@ -42,11 +42,11 @@ considéré comme nul et le classement des joueurs reste inchangé.
 
 ### Actions utilisateur
 
-- Possibilité d’écrire un programme qui permet d’interagir avec son personnage.
-- Gérer ses programmes.
-- Lancement d’une partie avec l’un de ses programmes
-- Poster son programme sur un dépôt public
-- Télécharger/Commenter/Noter les programmes d’autres utilisateurs
+- Possibilité d’écrire un programme qui permet d’interagir avec son personnage (un personnage est défini par un programme)
+- Gérer ses personnages
+- Lancement d’une partie avec l’un de ses personnages
+- Poster son personnage sur un dépôt public
+- Télécharger/Commenter/Noter les personnages d’autres utilisateurs
 - Visualisation du ranking des autres utilisateurs
 
 ## Délais

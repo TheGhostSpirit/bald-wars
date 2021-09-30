@@ -1,0 +1,19 @@
+<header class="p-3 bg-dark text-white">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="assets/logo.png" />
+    </div>
+    <div class="col-md-6 d-flex justify-content-end">
+      <button type="button" class="btn btn-outline-light align-self-center"
+        (click)="auth.login()" *ngIf="!auth.isLoggedIn">
+        Sign in
+      </button>
+      <div class="align-self-center" *ngIf="auth.isLoggedIn">
+        <span class="mr-5">{{ auth.name }}</span>
+        <button type="button" class="btn btn-outline-light" (click)="auth.logout()">
+          Sign out
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
