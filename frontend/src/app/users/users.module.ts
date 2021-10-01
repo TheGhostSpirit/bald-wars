@@ -6,11 +6,13 @@ import { UsersRoutingModule } from './users-routing.module';
 
 import { UserLeaderboardComponent } from './leaderboard/leaderboard.component';
 import { UserProfileComponent } from './profile/profile.component';
+import { UserCodeComponent } from './code/code.component';
 
 @NgModule({
   declarations: [
     UserLeaderboardComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UserCodeComponent
   ],
   imports: [
     CommonModule,

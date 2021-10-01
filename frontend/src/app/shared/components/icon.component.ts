@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-type ICON_NAMES = 'sword' | 'leaderboard' | 'repository' | 'edit' | 'delete' | '';
+type ICON_NAMES = 'sword' | 'leaderboard' | 'repository' | 'edit' | 'delete' | 'plus' | '';
 type ICON_SIZES = 1 | 2 | 3;
 
 @Component({
