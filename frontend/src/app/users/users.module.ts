@@ -5,10 +5,12 @@ import { SharedModule } from '../shared/shared.module';
 import { UsersRoutingModule } from './users-routing.module';
 
 import { UserLeaderboardComponent } from './leaderboard/leaderboard.component';
+import { UserProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     UserLeaderboardComponent,
+    UserProfileComponent
   ],
   imports: [
     CommonModule,

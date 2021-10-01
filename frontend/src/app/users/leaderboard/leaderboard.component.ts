@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserRanking } from 'src/app/core/models/user';
 
 import { UsersService } from 'src/app/core/services/user/users.service';
+
+import { User } from 'src/app/core/models/user';
 
 @Component({
   selector: 'app-user-leaderboard',
@@ -10,13 +11,13 @@ import { UsersService } from 'src/app/core/services/user/users.service';
 })
 export class UserLeaderboardComponent implements OnInit {
 
-  rankings: UserRanking[] = [];
+  users: User[] = [];
 
   constructor(private service: UsersService) { }
 
   ngOnInit(): void {
-    this.service.getRankings().subscribe(res => {
-      this.rankings = res;
+    this.service.findAll().subscribe(res => {
+      this.users = res;
     });
   }
 

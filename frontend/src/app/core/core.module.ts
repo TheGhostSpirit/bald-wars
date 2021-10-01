@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { OAuthModule } from 'angular-oauth2-oidc';
 
+import { AuthorizationInterceptor } from './interceptors/authorization/authorization.interceptor';
+import { BaseUrlInterceptor } from './interceptors/base-url/base-url.interceptor';
+
 import { AuthService } from './services/auth/auth.service';
 import { AuthGuard } from './services/auth-guard/auth.guard';
 import { UsersService } from './services/user/users.service';
-
-import { AuthorizationInterceptor } from './interceptors/authorization/authorization.interceptor';
-import { BaseUrlInterceptor } from './interceptors/base-url/base-url.interceptor';
+import { CharactersService } from './services/character/characters.service';
 
 @NgModule({
   declarations: [],
@@ -19,6 +20,7 @@ import { BaseUrlInterceptor } from './interceptors/base-url/base-url.interceptor
   providers: [
     AuthService,
     UsersService,
+    CharactersService,
     {
       provide: APP_INITIALIZER,
       useFactory: (service: AuthService) => () => service.start(),

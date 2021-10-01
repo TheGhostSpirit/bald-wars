@@ -36,8 +36,13 @@ export class AuthService {
   }
 
   get name(): string {
-    let claims = this.oauthService.getIdentityClaims() as any;
+    const claims = this.oauthService.getIdentityClaims() as any;
     return claims?.name;
+  }
+
+  get email(): string {
+    const claims = this.oauthService.getIdentityClaims() as any;
+    return claims?.email;
   }
 
   get isLoggedIn(): boolean {

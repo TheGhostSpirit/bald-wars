@@ -1,0 +1,81 @@
+<div class="d-flex justify-content-center mt-5" *ngIf="!user">
+  <div class="spinner-grow"></div>
+</div>
+<div class="m-5" *ngIf="user">
+  <div class="row m-5">
+    <div class="col-1"></div>
+    <div class="col-3 card">
+      <div class="card-body">
+        <h5 class="card-title">User Stats</h5>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-6">Username</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-6">{{ user.displayName }}</p>
+        </div>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-6">Email</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-6">{{ user.email }}</p>
+        </div>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-6">ELO</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-6">{{ user.elo }}</p>
+        </div>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-6">Ranking</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-6">{{ user.ranking }}</p>
+        </div>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-6">Battles Fought</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-6">{{ user.battles.fought }}</p>
+        </div>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-6">Battles Won</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-6">{{ user.battles.won }}</p>
+        </div>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-6">Battles Lost</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-6">{{ user.battles.lost }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-4"></div>
+    <div class="col-3 card">
+      <div class="card-body">
+        <div class="row text-center h-100">
+          <div class="col-4 my-auto cursor-pointer">
+            <app-icon [name]="'sword'" [size]="2"></app-icon>
+            <p class="font-weight-bold">Battle</p>
+          </div>
+          <div class="col-4 my-auto cursor-pointer" routerLink="/users/leaderboards">
+            <app-icon [name]="'leaderboard'" [size]="2"></app-icon>
+            <p class="font-weight-bold">Leaderboard</p>
+          </div>
+          <div class="col-4 my-auto cursor-pointer">
+            <app-icon [name]="'repository'" [size]="2"></app-icon>
+            <p class="font-weight-bold text-muted">Character repository</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-1"></div>
+  </div>
+  <div>
+    <h1>My Characters</h1>
+    <table class="mt-5 table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let character of characters">
+          <td>{{ character.name }}</td>
+          <td>
+            <app-icon class="cursor-pointer mr-5" [name]="'edit'" [size]="1"></app-icon>
+            <app-icon class="cursor-pointer mr-5" [name]="'delete'" [size]="1"></app-icon>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
