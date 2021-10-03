@@ -10,6 +10,7 @@ import { AuthService } from './services/auth/auth.service';
 import { AuthGuard } from './services/auth-guard/auth.guard';
 import { UsersService } from './services/user/users.service';
 import { CharactersService } from './services/character/characters.service';
+import { AnalysisService } from './services/analysis/analysis.service';
 
 @NgModule({
   declarations: [],
@@ -21,6 +22,7 @@ import { CharactersService } from './services/character/characters.service';
     AuthService,
     UsersService,
     CharactersService,
+    AnalysisService,
     {
       provide: APP_INITIALIZER,
       useFactory: (service: AuthService) => () => service.start(),

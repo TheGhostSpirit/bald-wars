@@ -23,4 +23,7 @@ export class CharactersService {
     ] as Character[]);
   }
 
+  delete(email: string, characterName: string): Observable<void> {
+    return of();
+  }
 }
