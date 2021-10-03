@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 type ICON_NAMES = string;
-type ICON_SIZES = 0.5 | 0.75 | 1 | 2 | 3;
+type ICON_SIZES = number;
 
 @Component({
   selector: 'app-icon',

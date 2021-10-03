@@ -10,9 +10,8 @@
       </button>
       <div class="align-self-center" *ngIf="auth.isLoggedIn">
         <span class="mr-5">{{ auth.name }}</span>
-        <button type="button" class="btn btn-outline-light" (click)="auth.logout()">
-          Sign out
-        </button>
+        <app-icon class="cursor-pointer" [name]="'logout'" [size]="1" (click)="auth.logout()">
+        </app-icon>
       </div>
     </div>
   </div>
