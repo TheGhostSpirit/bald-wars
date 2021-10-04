@@ -21,7 +21,8 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "fast-sha256"
+              "fast-sha256",
+              "@ctrl/ngx-codemirror"
             ],
             "outputPath": "dist/frontend",
             "index": "src/index.html",

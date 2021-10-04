@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 
-import { Character } from '../../models/character';
+import { Character } from 'src/app/core/models/character';
 
 @Injectable()
 export class CharactersService {
@@ -23,7 +23,7 @@ export class CharactersService {
     ] as Character[]);
   }
 
-  delete(email: string, characterName: string): Observable<void> {
-    return of();
+  delete(email: string, characterName: string): Observable<string> {
+    return of(characterName);
   }
 }

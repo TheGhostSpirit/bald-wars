@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 
-import { AnalysisResult } from '../../models/analysis';
+import { AnalysisResult } from 'src/app/core/models/analysis';
 
 @Injectable()
 export class AnalysisService {

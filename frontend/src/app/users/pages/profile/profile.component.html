@@ -72,7 +72,9 @@
           <td>{{ character.name }}</td>
           <td>
             <app-icon class="cursor-pointer mr-5" [name]="'edit'" [size]="1"></app-icon>
-            <app-icon class="cursor-pointer mr-5" [name]="'delete'" [size]="1"></app-icon>
+            <app-icon class="cursor-pointer mr-5" [name]="'delete'"
+              [size]="1" (click)="delete(modal, character.name)">
+            </app-icon>
           </td>
         </tr>
       </tbody>
@@ -83,3 +85,11 @@
     </div>
   </div>
 </div>
+<ng-template #modal>
+  <app-confirmation-modal
+    [modalRef]="modalRef"
+    [characterName]="modalState?.characterName"
+    [message]="modalState?.message"
+    (confirmed)="confirmDeletion($event)">
+  </app-confirmation-modal>
+</ng-template>
