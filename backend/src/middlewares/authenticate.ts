@@ -19,7 +19,7 @@ const bearerStrategy = new BearerStrategy(
     done(
       null,
       {
-        email: token.email
+        email: token.preferred_username
       },
       token
     );

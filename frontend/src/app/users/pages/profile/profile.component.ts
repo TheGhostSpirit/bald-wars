@@ -37,10 +37,13 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.usersService.findOne(this.auth.email).subscribe(res => {
       this.user = res;
-    }, () => {
-      this.usersService.create(this.auth.email, this.auth.name).subscribe(
-        res => { this.user = res; }
-      );
+    }, err => {
+      console.log(err);
+      if (err.status === 404) {
+        this.usersService.create(this.auth.email, this.auth.name).subscribe(
+          res => { this.user = res; }
+        );
+      }
     });
     this.charactersService.find(this.auth.email).subscribe(res => {
       this.characters = res;

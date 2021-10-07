@@ -68,8 +68,8 @@ const create = async (
   repository: Repository<User>,
   user: CreateUserType
 ): Promise<IUser> => {
-  const savedUser = await repository.save({ ...user, ...defaultUserValues });
-  return findOne(repository, savedUser.email);
+  await repository.insert({ ...user, ...defaultUserValues });
+  return findOne(repository, user.email);
 };
 
 export default { list, findOne, create };

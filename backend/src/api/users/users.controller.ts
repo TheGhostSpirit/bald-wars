@@ -2,7 +2,7 @@ import { Connection } from 'typeorm';
 import { Request } from 'express';
 import createHttpError from 'http-errors';
 
-import { validateSchema } from '../../utils';
+import { validateSchema, validateUser } from '../../utils';
 
 import { User, IUser } from './user';
 import userService from './users.service';
@@ -14,6 +14,11 @@ const list = async (connection: Connection): Promise<IUser[]> => {
 
 const findOne = async (connection: Connection, request: Request): Promise<IUser> => {
   const { email } = request.params;
+
+  if (!validateUser(email, request)) {
+    throw createHttpError(403, 'Forbidden');
+  }
+
   const user = await userService.findOne(connection.getRepository(User), email);
 
   if (!user) {
