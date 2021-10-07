@@ -15,15 +15,13 @@ export const CONFIG = {
     },
     audience: process.env.AZURE_AUDIENCE,
     get issuer(): string {
-      return `https://sts.windows.net/${this.tenantId}/`;
+      return `https://login.microsoftonline.com/${this.tenantId}/v2.0`;
     }
   },
   database: {
-    port: process.env.DATABASE_PORT,
+    port: +(process.env.DATABASE_PORT ?? 3306),
     host: process.env.DATABASE_HOST,
     dbName: process.env.DATABASE_DBNAME,
-    get url(): string {
-      return `mongodb://${this.host}:${this.port}`;
-    }
+    password: process.env.MYSQL_ROOT_PASSWORD
   }
 };

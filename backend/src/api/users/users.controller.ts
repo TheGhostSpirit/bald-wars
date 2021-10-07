@@ -1,23 +1,20 @@
-import { Db, ObjectId } from 'mongodb';
+import { Connection } from 'typeorm';
 import { Request } from 'express';
 import createHttpError from 'http-errors';
 
-import { validateSchema, validateRouteParams, useRepository } from '../../utils';
+import { validateSchema } from '../../utils';
 
-import { User } from './user';
+import { User, IUser } from './user';
 import userService from './users.service';
 import userSchemas from './users.schema';
 
-const userRepository = (database: Db) => useRepository<User>(database, 'models');
-
-const list = async (database: Db): Promise<User[]> => {
-  return userService.list(userRepository(database));
+const list = async (connection: Connection): Promise<IUser[]> => {
+  return userService.list(connection.getRepository(User));
 };
 
-const findOne = async (database: Db, request: Request): Promise<User> => {
-  const [ id ] = validateRouteParams(request.params.id);
-
-  const user = await userService.findOne(userRepository(database), id);
+const findOne = async (connection: Connection, request: Request): Promise<IUser> => {
+  const { email } = request.params;
+  const user = await userService.findOne(connection.getRepository(User), email);
 
   if (!user) {
     throw createHttpError(404, 'Invalid user id');
@@ -26,9 +23,9 @@ const findOne = async (database: Db, request: Request): Promise<User> => {
   return user;
 };
 
-const create = async (database: Db, request: Request): Promise<{ id: ObjectId }> => {
+const create = async (connection: Connection, request: Request): Promise<IUser> => {
   const user = validateSchema(userSchemas.createUserSchema, request.body);
-  return userService.create(userRepository(database), user);
+  return userService.create(connection.getRepository(User), user);
 };
 
 export default { list, create, findOne };

@@ -1,20 +1,18 @@
-import { ObjectId } from 'mongodb';
+import { Repository } from 'typeorm';
 
-import { Repository } from '../../../utils';
-
-import { Character } from './character';
+import { PCharacter } from './character';
 
 const list = async (
-  repository: Repository<Character>
-): Promise<Character[]> => {
-  return repository.findAll();
+  repository: Repository<PCharacter>
+): Promise<PCharacter[]> => {
+  return repository.find();
 };
 
 const findOne = async (
-  repository: Repository<Character>,
-  id: ObjectId
-): Promise<Character | undefined> => {
-  return repository.findById(id);
+  repository: Repository<PCharacter>,
+  id: number
+): Promise<PCharacter | undefined> => {
+  return repository.findOne(id);
 };
 
 export default { list, findOne };

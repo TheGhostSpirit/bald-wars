@@ -1,19 +1,32 @@
-import { Character } from './characters/character';
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 
-export interface User {
-  displayName: string;
+import { PCharacter } from './characters/character';
+
+@Entity()
+export class User {
+
+  @PrimaryColumn()
   email: string;
+
+  @Column()
+  displayName: string;
+
+  @Column()
   elo: number;
-  battles: unknown[];
-  characters: Character[];
+
+  @OneToMany(_ => PCharacter, character => character.user)
+  characters: PCharacter[];
+
 }
 
-export const defaultUser = (): User => {
-  return {
-    displayName: '',
-    email: '',
-    elo: 1400,
-    battles: [],
-    characters: []
+export interface IUser {
+  email: string;
+  displayName: string;
+  elo: number;
+  ranking: number;
+  battles: {
+    won: number;
+    lost: number;
+    fought: number;
   };
-};
+}

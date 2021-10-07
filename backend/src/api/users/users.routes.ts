@@ -13,7 +13,7 @@ const routes: Route[] = [
   },
   {
     method: 'get',
-    path: '/:id',
+    path: '/:email',
     handler: usersController.findOne
   },
   {

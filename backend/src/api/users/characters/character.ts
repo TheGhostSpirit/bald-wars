@@ -1,10 +1,23 @@
-export interface Character {
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+
+import { User } from '../user';
+
+@Entity()
+export class PCharacter {
+
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
   name: string;
-  visibility: 'private' | 'public';
-  battles: {
-    participated: number;
-    won: number;
-    lost: number;
-  };
+
+  @Column()
+  visibility: boolean;
+
+  @Column('text')
   program: string;
+
+  @ManyToOne(_ => User, user => user.characters)
+  user: User;
+
 }

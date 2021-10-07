@@ -9,6 +9,8 @@
     "inlineSourceMap": true,
     "esModuleInterop": true,
     "strict": true,
+    "strictNullChecks": false,
+    "strictPropertyInitialization": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,

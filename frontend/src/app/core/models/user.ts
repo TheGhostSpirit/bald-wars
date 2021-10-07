@@ -3,9 +3,7 @@ export interface User {
   email: string;
   elo: number;
   ranking: number;
-  battles: {
-    won: number;
-    lost: number;
-    fought: number;
-  };
+  battlesWon: number;
+  battlesLost: number;
+  battlesFought: number;
 }

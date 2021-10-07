@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 
-import { connectDatabase, noOp, handleUpdate, authenticate } from '../../middlewares';
+import { connectDatabase, authenticate } from '../../middlewares';
 
 /**
  * Represents the possible values for the API's endpoints HTTP methods.
@@ -46,7 +46,6 @@ export const buildRoutes = (paths: Path[]): Router => {
         p.path + r.path,
         authenticate(),
         connectDatabase(r.handler),
-        r.options?.update ? handleUpdate : noOp,
         (request: Request, response: Response) => response.json(request.app.locals.result)
       );
     });
