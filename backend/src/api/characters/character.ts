@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-import { User } from '../user';
+import { User } from '../users/user';
 
 @Entity()
 export class PCharacter {
@@ -20,4 +20,15 @@ export class PCharacter {
   @ManyToOne(_ => User, user => user.characters)
   user: User;
 
+}
+
+export interface ICharacter {
+  id: number;
+  name: string;
+  visibility: boolean;
+  program: string;
+  userEmail: string;
+  battlesWon: number;
+  battlesFought: number;
+  battlesLost: number;
 }

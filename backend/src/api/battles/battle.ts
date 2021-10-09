@@ -1,6 +1,6 @@
 import { ManyToOne, Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-import { PCharacter } from '../users/characters/character';
+import { PCharacter } from '../characters/character';
 
 @Entity()
 export class Battle {

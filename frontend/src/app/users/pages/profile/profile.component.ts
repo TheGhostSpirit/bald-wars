@@ -24,7 +24,7 @@ export class UserProfileComponent implements OnInit {
   modalRef?: BsModalRef<unknown>;
   modalState?: {
     message: string;
-    characterName: string;
+    character: Character;
   };
 
   constructor(
@@ -45,21 +45,21 @@ export class UserProfileComponent implements OnInit {
         );
       }
     });
-    this.charactersService.find(this.auth.email).subscribe(res => {
+    this.charactersService.findAllOfUser(this.auth.email).subscribe(res => {
       this.characters = res;
     });
   }
 
-  delete(template: TemplateRef<ConfirmationModalComponent>, characterName: string) {
+  delete(template: TemplateRef<ConfirmationModalComponent>, character: Character) {
     this.modalState = {
-      message: `This will delete the character "${characterName}"!`,
-      characterName
+      message: `This will delete the character "${character.name}"!`,
+      character
     };
     this.modalRef = this.modal.show(template);
   }
 
-  confirmDeletion(characterName: string) {
-    this.charactersService.delete(this.auth.email, characterName).subscribe(() => {
+  confirmDeletion(character: Character) {
+    this.charactersService.delete(this.auth.email, character.id).subscribe(() => {
       console.log('deleted');
     });
   }

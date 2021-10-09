@@ -11,16 +11,16 @@ export class ConfirmationModalComponent implements OnInit {
 
   @Input() message?: string;
   @Input() modalRef?: BsModalRef;
-  @Input() characterName?: string;
+  @Input() data?: any;
 
-  @Output() confirmed = new EventEmitter<string>();
+  @Output() confirmed = new EventEmitter<any>();
 
   constructor() {}
 
   ngOnInit(): void {}
 
   confirm() {
-    this.confirmed.emit(this.characterName);
+    this.confirmed.emit(this.data);
     this.modalRef?.hide();
   }
 

@@ -64,16 +64,24 @@
       <thead>
         <tr>
           <th>Name</th>
+          <th>Visibility</th>
+          <th>Battles Fought</th>
+          <th>Battles Won</th>
+          <th>Battles Lost</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let character of characters">
           <td>{{ character.name }}</td>
+          <td>{{ !character.visibility ? 'private' : 'public' }}</td>
+          <td>{{ character.battlesFought }}</td>
+          <td>{{ character.battlesWon }}</td>
+          <td>{{ character.battlesLost }}</td>
           <td>
             <app-icon class="cursor-pointer mr-5" [name]="'edit'" [size]="1"></app-icon>
             <app-icon class="cursor-pointer mr-5" [name]="'delete'"
-              [size]="1" (click)="delete(modal, character.name)">
+              [size]="1" (click)="delete(modal, character)">
             </app-icon>
           </td>
         </tr>
@@ -88,7 +96,7 @@
 <ng-template #modal>
   <app-confirmation-modal
     [modalRef]="modalRef"
-    [characterName]="modalState?.characterName"
+    [data]="modalState?.character"
     [message]="modalState?.message"
     (confirmed)="confirmDeletion($event)">
   </app-confirmation-modal>

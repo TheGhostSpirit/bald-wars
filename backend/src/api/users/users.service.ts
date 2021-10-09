@@ -1,7 +1,7 @@
 import { Repository, SelectQueryBuilder } from 'typeorm';
 
 import { IUser, User } from './user';
-import { PCharacter } from './characters/character';
+import { PCharacter } from '../characters/character';
 import { Battle } from '../battles/battle';
 
 import { CreateUserType } from './users.schema';

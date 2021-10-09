@@ -9,7 +9,7 @@
   "logging": false,
   "entities": [
     "src/api/users/user.ts",
-    "src/api/users/characters/character.ts",
+    "src/api/characters/character.ts",
     "src/api/battles/battle.ts"
   ],
   "migrations": [

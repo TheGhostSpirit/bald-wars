@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 
-import { PCharacter } from './characters/character';
+import { PCharacter } from '../characters/character';
 
 @Entity()
 export class User {
@@ -24,9 +24,7 @@ export interface IUser {
   displayName: string;
   elo: number;
   ranking: number;
-  battles: {
-    won: number;
-    lost: number;
-    fought: number;
-  };
+  battlesWon: number;
+  battlesFought: number;
+  battlesLost: number;
 }
