@@ -1,0 +1,11 @@
+{
+  "name": "character-lib",
+  "version": "1.0.0",
+  "description": "types for the characters",
+  "author": "TheGhostSpirit",
+  "license": "ISC",
+  "main": "index.ts",
+  "devDependencies": {
+    "typescript": "^4.4.4"
+  }
+}
