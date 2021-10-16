@@ -6,6 +6,9 @@ export class Character implements ICharacter {
   _y: number;
   _hp: number;
 
+  id: number;
+  name: string;
+
   defense: number;
   melee: number;
   ranged: number;
@@ -27,14 +30,16 @@ export class Character implements ICharacter {
     return this._y;
   }
 
-  static fromMyCharacter(char: MyCharacter, x: number, y: number): Character {
+  static fromMyCharacter(char: MyCharacter, x: number, y: number, id: number, name: string): Character {
     return Object.assign(new Character(), {
       ...char,
       maxHp: char.health,
       _hp: char.health,
       health: undefined,
       _x: x,
-      _y: y
+      _y: y,
+      id,
+      name
     });
   }
 

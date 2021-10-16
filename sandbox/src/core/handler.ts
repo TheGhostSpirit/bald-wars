@@ -18,7 +18,10 @@ export const handler = (req: Request, res: Response) => {
   const char1Module = requireFromString(char1Js);
   const char2Module = requireFromString(char2Js);
 
-  const result = battle(char1Module.default, char2Module.default);
+  const result = battle(
+    [ input.character1.id, input.character1.name, char1Module.default ],
+    [ input.character2.id, input.character2.name, char2Module.default ]
+  );
 
   return res.json({ result });
 };
