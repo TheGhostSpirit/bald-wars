@@ -2,13 +2,13 @@ import { z } from 'zod';
 
 const createCharacterSchema = z.object({
   name: z.string(),
-  visibility: z.boolean(),
+  visibility: z.number(),
   program: z.string()
 });
 
 const updateCharacterSchema = z.object({
   name: z.string(),
-  visibility: z.boolean(),
+  visibility: z.number(),
   program: z.string()
 });
 

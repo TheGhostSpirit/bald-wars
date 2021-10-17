@@ -1,7 +1,7 @@
 export interface Character {
   id: number;
   name: string;
-  visibility: boolean;
+  visibility: number;
   program: string;
   userEmail: string;
   battlesWon: number;

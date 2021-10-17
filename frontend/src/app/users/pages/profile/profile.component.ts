@@ -50,6 +50,17 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  newCharacter() {
+    this.charactersService.create(this.auth.email, {
+      name: 'new',
+      visibility: 0
+    }).subscribe(
+      () => this.charactersService.findAllOfUser(this.auth.email).subscribe(res => {
+        this.characters = res;
+      })
+    );
+  }
+
   delete(template: TemplateRef<ConfirmationModalComponent>, character: Character) {
     this.modalState = {
       message: `This will delete the character "${character.name}"!`,
@@ -60,7 +71,9 @@ export class UserProfileComponent implements OnInit {
 
   confirmDeletion(character: Character) {
     this.charactersService.delete(this.auth.email, character.id).subscribe(() => {
-      console.log('deleted');
+      this.charactersService.findAllOfUser(this.auth.email).subscribe(res => {
+        this.characters = res;
+      })
     });
   }
 

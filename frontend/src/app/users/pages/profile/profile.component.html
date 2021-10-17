@@ -79,7 +79,7 @@
           <td>{{ character.battlesWon }}</td>
           <td>{{ character.battlesLost }}</td>
           <td>
-            <app-icon class="cursor-pointer mr-5" [name]="'edit'" [size]="1"></app-icon>
+            <app-icon class="cursor-pointer mr-5" routerLink="/users/me/characters/{{character.id}}" [name]="'edit'" [size]="1"></app-icon>
             <app-icon class="cursor-pointer mr-5" [name]="'delete'"
               [size]="1" (click)="delete(modal, character)">
             </app-icon>
@@ -88,7 +88,8 @@
       </tbody>
     </table>
     <div class="d-flex">
-      <app-icon routerLink="/users/me/characters/new"
+      <app-icon
+        (click)="newCharacter()"
         class="cursor-pointer mx-auto" [name]="'plus'" [size]="1"></app-icon>
     </div>
   </div>

@@ -12,7 +12,7 @@ export class PCharacter {
   name: string;
 
   @Column()
-  visibility: boolean;
+  visibility: number;
 
   @Column('text')
   program: string;
@@ -25,7 +25,7 @@ export class PCharacter {
 export interface ICharacter {
   id: number;
   name: string;
-  visibility: boolean;
+  visibility: number;
   program: string;
   userEmail: string;
   battlesWon: number;
