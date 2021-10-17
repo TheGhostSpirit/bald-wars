@@ -24,7 +24,7 @@ export class Game implements IGame {
       : this.characters[0];
   }
 
-  constructor(private characters: [Character, Character]) {
+  constructor(public characters: [Character, Character]) {
     [ this.turn ] = characters;
     this.actions.push(
       [

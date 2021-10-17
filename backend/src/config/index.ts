@@ -23,5 +23,12 @@ export const CONFIG = {
     host: process.env.DATABASE_HOST,
     dbName: process.env.DATABASE_DBNAME,
     password: process.env.MYSQL_ROOT_PASSWORD
+  },
+  sandbox: {
+    host: process.env.SANDBOX_HOST,
+    port: process.env.SANDBOX_PORT,
+    get url(): string {
+      return `http://${this.host}:${this.port}`;
+    }
   }
 };

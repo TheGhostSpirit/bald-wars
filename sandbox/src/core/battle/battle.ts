@@ -29,5 +29,10 @@ export const battle = (
     game.doMove(action);
   }
 
-  return game.actions;
+  return {
+    moves: game.actions,
+    winner: game.winner,
+    char1: game.characters[0],
+    char2: game.characters[1]
+  };
 };

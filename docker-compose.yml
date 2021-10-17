@@ -20,3 +20,15 @@ services:
       - .env
     working_dir: /app
     entrypoint: sh -c "npm i && npm start"
+  bald-wars-sandbox:
+    container_name: bald-wars-sandbox
+    image: node:16.6.1-alpine3.13
+    ports:
+      - '${SANDBOX_PORT}:${SANDBOX_PORT}'
+    volumes:
+      - './sandbox:/app/sandbox'
+      - './character-lib:/app/character-lib'
+    env_file:
+      - .env
+    working_dir: /app/sandbox
+    entrypoint: sh -c "npm i && npm start"

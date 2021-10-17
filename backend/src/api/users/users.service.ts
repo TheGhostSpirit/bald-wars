@@ -69,7 +69,33 @@ const create = async (
   user: CreateUserType
 ): Promise<IUser> => {
   await repository.insert({ ...user, ...defaultUserValues });
-  return findOne(repository, user.email);
+  return findOne(repository, user.email) as Promise<IUser>;
 };
 
-export default { list, findOne, create };
+const updateElo = async (
+  repository: Repository<User>,
+  user1: User,
+  user2: User,
+  winner: User
+): Promise<unknown> => {
+  const k = 32;
+  const eloDifference = Math.abs(user2.elo - user1.elo);
+  const percentage = 1 / (1 + Math.pow(10, eloDifference / 400));
+  const win = Math.round(k * (1 - percentage));
+  const loss = Math.round(k * (0 - percentage));
+
+  if (winner.email === user1.email) {
+    user1.elo += win;
+    user2.elo -= win;
+  } else {
+    user1.elo += loss;
+    user2.elo -= loss;
+  }
+
+  return Promise.all([
+    repository.update(user1.email, { elo: user1.elo }),
+    repository.update(user2.email, { elo: user2.elo })
+  ]);
+};
+
+export default { list, findOne, create, updateElo };
