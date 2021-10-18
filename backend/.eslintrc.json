@@ -8,7 +8,8 @@
   "parser": "@typescript-eslint/parser",
   "plugins": [],
   "globals": {
-    "process": "readonly"
+    "process": "readonly",
+    "Buffer": "readonly"
   },
   "rules": {
     "prefer-const": 1,

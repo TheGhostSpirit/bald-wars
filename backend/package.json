@@ -15,6 +15,7 @@
   "author": "TheGhostSpirit",
   "license": "Unlicense",
   "dependencies": {
+    "antlr4ts": "^0.5.0-alpha.4",
     "axios": "^0.23.0",
     "chalk": "^4.1.2",
     "cors": "^2.8.5",
