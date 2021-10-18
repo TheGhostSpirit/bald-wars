@@ -52,11 +52,12 @@ export abstract class QualityGrammarVisitor
   }
 
   private addError(rule: Rule<string>, ...errors: string[]) {
-    this.quality.errors.push(
-      errors.reduce((errorMessage, current) => {
+    this.quality.errors.push({
+      message: errors.reduce((errorMessage, current) => {
         return errorMessage.replace('{}', current);
-      }, rule.errorMessage)
-    );
+      }, rule.errorMessage),
+      type: rule.gravity
+    });
   }
 
   protected defaultResult() {}

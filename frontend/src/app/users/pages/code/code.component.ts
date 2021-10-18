@@ -43,7 +43,7 @@ export class UserCodeComponent implements OnInit {
   }
 
   analyse() {
-    this.analysisService.analyse().subscribe(
+    this.analysisService.analyse(this.auth.email, this.character.id).subscribe(
       res => {
         this.analysis = res;
         this.hasAnalysed = true;

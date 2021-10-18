@@ -1,3 +1,6 @@
 export class Quality {
-  errors: string[] = [];
+  errors: {
+    message: string;
+    type: 'warning' | 'error';
+  }[] = [];
 }

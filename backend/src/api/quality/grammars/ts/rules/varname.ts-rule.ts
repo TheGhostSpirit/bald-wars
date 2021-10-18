@@ -5,6 +5,7 @@ import { VariableDeclarationContext } from '../runtime/TypeScriptParser';
 export const tsVarnameRule: TsRule = {
   errorMessage:
     'Invalid variable name `{}`. Variable names must be in camel case.',
+  gravity: 'error',
   hooks: [
     {
       type: 'visitVariableDeclaration',
