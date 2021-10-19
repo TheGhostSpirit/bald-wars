@@ -11,6 +11,7 @@ import { AuthGuard } from './services/auth-guard/auth.guard';
 import { UsersService } from './services/user/users.service';
 import { CharactersService } from './services/character/characters.service';
 import { AnalysisService } from './services/analysis/analysis.service';
+import { BattlesService } from './services/battle/battles.service';
 
 @NgModule({
   declarations: [],
@@ -22,6 +23,7 @@ import { AnalysisService } from './services/analysis/analysis.service';
     AuthService,
     UsersService,
     CharactersService,
+    BattlesService,
     AnalysisService,
     {
       provide: APP_INITIALIZER,

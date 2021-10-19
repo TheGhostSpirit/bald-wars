@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Character } from 'src/app/core/models/character';
+import { Opponent } from 'src/app/core/models/opponent';
 
 @Injectable()
 export class CharactersService {
@@ -12,6 +13,10 @@ export class CharactersService {
 
   findAllPublic() {
     return this.http.get<Character[]>('/characters');
+  }
+
+  findOpponents(email: string): Observable<Opponent[]> {
+    return this.http.get<Opponent[]>(`/users/${email}/opponents`);
   }
 
   findAllOfUser(email: string): Observable<Character[]> {

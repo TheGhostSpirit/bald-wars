@@ -1,7 +1,38 @@
-<div>
-  <tabset>
-    <tab heading="Basic title" id="tab1">Basic content</tab>
-    <tab heading="Basic Title 1">Basic content 1</tab>
-    <tab heading="Basic Title 2">Basic content 2</tab>
+<div class="mt-5">
+  <tabset [justified]="true">
+    <tab heading="Opponents">
+      <div class="d-flex">
+        <select class="form-control col-6 mx-auto my-4" [formControl]="formControl">
+          <option *ngFor="let character of myCharacters" [value]="character">
+            {{ character.name }}
+          </option>
+        </select>
+      </div>
+      <div class="d-flex flex-column">
+        <div *ngFor="let opponent of opponents" class="card battle-card mx-auto my-4">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ opponent.name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ opponent.user.displayName }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{{ opponent.user.elo }}</h6>
+            <a class="card-link cursor-pointer" (click)="attack(opponent)">Attack</a>
+          </div>
+        </div>
+      </div>
+    </tab>
+    <tab heading="Recents Battles">
+      <div class="d-flex flex-column p-5">
+        <div *ngFor="let battle of battles" class="card battle-card mx-auto my-4">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ battle.char1 }} - {{ battle.char2 }}</h5>
+            <h6 class="card-subtitle text-muted">{{ battle.winner }}</h6>
+            <a class="card-link cursor-pointer" routerLink="/battles/{{battle.id}}">Replay</a>
+          </div>
+        </div>
+      </div>
+    </tab>
   </tabset>
+  <div class="mt-5 d-flex">
+    <app-icon class="cursor-pointer mx-auto" [name]="'back'" [size]="1" routerLink="/users/me/characters">
+    </app-icon>
+  </div>
 </div>

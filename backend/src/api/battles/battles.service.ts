@@ -8,7 +8,20 @@ import { CONFIG } from '../../config';
 const find = async (
   repository: Repository<Battle>
 ): Promise<Battle[]> => {
-  return repository.find();
+  const battles = await repository.find({
+    relations: [
+      'char1',
+      'char2',
+      'winner'
+    ]
+  });
+
+  return battles.map(b => {
+    b.char1 = b.char1.name as any;
+    b.char2 = b.char2.name as any;
+    b.winner = b.winner.name as any;
+    return b;
+  });
 };
 
 const create = async (
@@ -44,7 +57,7 @@ const create = async (
     char2: characters[1],
     winner,
     status: 0,
-    moves: JSON.stringify(battleResult.result.moves)
+    moves: JSON.stringify(battleResult.result)
   });
 
   return winner;

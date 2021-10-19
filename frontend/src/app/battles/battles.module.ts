@@ -5,10 +5,12 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { BattlesRoutingModule } from './battles-routing.module';
 
 import { MainBattleComponent } from './pages/battle/battle.component';
+import { BattleReplayComponent } from './pages/replay/replay.component';
 
 @NgModule({
   declarations: [
-    MainBattleComponent
+    MainBattleComponent,
+    BattleReplayComponent
   ],
   imports: [
     CommonModule,
