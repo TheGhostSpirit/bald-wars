@@ -11,6 +11,11 @@ const routes: Routes = [
     loadChildren: () => import('./users/users.module').then(m => m.UsersModule),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'battles',
+    loadChildren: () => import('./battles/battles.module').then(m => m.BattlesModule),
+    canActivate: [AuthGuard],
+  },
   { path: '**', component: HomeComponent }
 ];
 

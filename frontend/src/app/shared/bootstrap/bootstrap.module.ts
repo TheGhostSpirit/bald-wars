@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 @NgModule({
   declarations: [],
@@ -10,6 +11,7 @@ import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
   ],
   exports: [
     ModalModule,
+    TabsModule
   ],
   providers: [
     BsModalService,
