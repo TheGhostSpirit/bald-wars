@@ -1,6 +1,6 @@
-import { Repository, SelectQueryBuilder } from 'typeorm';
+import { Not, Repository, SelectQueryBuilder } from 'typeorm';
 
-import { ICharacter, PCharacter } from './character';
+import { ICharacter, IOpponent, PCharacter } from './character';
 import { User } from '../users/user';
 import { Battle } from '../battles/battle';
 
@@ -45,6 +45,27 @@ const findAllPublic = async (
   return query
     .where('c.visibility = 1')
     .getRawMany();
+};
+
+const findOpponents = async (
+  repository: Repository<PCharacter>,
+  email: string
+): Promise<IOpponent[]> => {
+  return repository.find(
+    {
+      select: [
+        'id', 'name'
+      ],
+      relations: [
+        'user'
+      ],
+      where: {
+        user: {
+          email: Not(email)
+        }
+      }
+    }
+  ) as unknown as IOpponent[];
 };
 
 const findAllOfUser = async (
@@ -92,4 +113,4 @@ const remove = async (
   return repository.delete(id);
 };
 
-export default { findAllPublic, findAllOfUser, findOneOfUser, create, update, remove };
+export default { findAllPublic, findOpponents, findAllOfUser, findOneOfUser, create, update, remove };

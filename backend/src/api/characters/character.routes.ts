@@ -18,6 +18,11 @@ const routes: Route[] = [
   },
   {
     method: 'get',
+    path: '/users/:email/opponents',
+    handler: charactersController.findOpponents
+  },
+  {
+    method: 'get',
     path: '/users/:email/characters/:id',
     handler: charactersController.findOneOfUser
   },

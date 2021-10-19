@@ -32,3 +32,13 @@ export interface ICharacter {
   battlesFought: number;
   battlesLost: number;
 }
+
+export interface IOpponent {
+  id: number;
+  name: number;
+  user: {
+    email: string;
+    displayName: string;
+    elo: number;
+  }
+}

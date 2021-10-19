@@ -4,7 +4,7 @@ import createHttpError from 'http-errors';
 
 import { validateSchema, validateUser } from '../../utils';
 
-import { ICharacter, PCharacter } from './character';
+import { ICharacter, IOpponent, PCharacter } from './character';
 import { User } from '../users/user';
 
 import charactersService from './characters.service';
@@ -22,6 +22,16 @@ const findAllOfUser = async (connection: Connection, request: Request): Promise<
   }
 
   return charactersService.findAllOfUser(connection.getRepository(PCharacter), email);
+};
+
+const findOpponents = async (connection: Connection, request: Request): Promise<IOpponent[]> => {
+  const { email } = request.params;
+
+  if (!validateUser(email, request)) {
+    throw createHttpError(403, 'Forbidden');
+  }
+
+  return charactersService.findOpponents(connection.getRepository(PCharacter), email);
 };
 
 const findOneOfUser = async (connection: Connection, request: Request): Promise<ICharacter> => {
@@ -99,4 +109,4 @@ const remove = async (connection: Connection, request: Request): Promise<unknown
   return charactersService.remove(connection.getRepository(PCharacter), +id);
 };
 
-export default { findAllPublic, findAllOfUser, findOneOfUser, create, update, remove };
+export default { findAllPublic, findOpponents, findAllOfUser, findOneOfUser, create, update, remove };
