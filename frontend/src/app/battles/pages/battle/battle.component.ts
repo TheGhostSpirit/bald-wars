@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+
+import { TabsetComponent } from 'ngx-bootstrap/tabs';
 
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { CharactersService } from 'src/app/core/services/character/characters.service';
@@ -15,6 +17,8 @@ import { Character } from 'src/app/core/models/character';
   styleUrls: ['./battle.component.less'],
 })
 export class MainBattleComponent implements OnInit {
+
+  @ViewChild('tabSet') tabset: TabsetComponent;
 
   opponents: Opponent[] = [];
   battles: Battle[] = [];
@@ -42,7 +46,12 @@ export class MainBattleComponent implements OnInit {
   }
 
   attack(opponent: Opponent) {
-    this.battleService.launch(this.formControl.value.id, opponent.id).subscribe();
+    this.battleService.launch(this.formControl.value.id, opponent.id).subscribe(() => {
+      this.battleService.find().subscribe(res => {
+        this.battles = res;
+        this.tabset.tabs[1].active = true;
+      });
+    });
   }
 
 }
