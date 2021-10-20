@@ -1,0 +1,114 @@
+<div class="d-flex justify-content-center mt-5" *ngIf="status === 'loading'">
+  <div class="spinner-grow"></div>
+</div>
+<div class="d-flex" *ngIf="status === 'not found'">
+  <h5 class="mx-auto text-muted mt-5">No Replay found for this battle.</h5>
+</div>
+<div *ngIf="status === 'found'">
+  <div class="d-flex">
+    <div class="mx-auto mt-5 col-8 card">
+      <div class="card-body">
+        <h5 class="card-title text-center">Turn {{ turn + 1 }}</h5>
+        <p class="card-subtitle text-center text-muted">{{ getMoveDescription() }}</p>
+        <div class="d-flex justify-content-between mx-5">
+          <a class="card-link cursor-pointer" (click)="resetMoves()">Reset</a>
+          <a class="card-link cursor-pointer" (click)="nextMove()">Next</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex mt-5 justify-content-around">
+    <div class="col-3 card text-center">
+      <div class="card-body">
+        <h5 class="card-title">Character 1 Stats</h5>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-4">Name</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-8">{{ battle.moves.char1.name }}</p>
+        </div>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-4">Melee</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-8">{{ battle.moves.char1.melee }}</p>
+        </div>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-4">Ranged</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-8">{{ battle.moves.char1.ranged }}</p>
+        </div>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-4">Movement</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-8">{{ battle.moves.char1.movement }}</p>
+        </div>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-4">Defense</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-8">{{ battle.moves.char1.defense }}</p>
+        </div>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-4">HP</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-8">{{ battle.moves.char1.maxHp }}</p>
+        </div>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-4">Max Range</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-8">{{ battle.moves.char1.rangedMaxRange }}</p>
+        </div>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-4">Heal</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-8">{{ battle.moves.char1.healingPotency }}</p>
+        </div>
+        <div class="progress mt-5">
+          <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width': getHpPercentage('char1')}"></div>
+        </div>
+      </div>
+    </div>
+    <div class="grid">
+      <div *ngFor="let i of gridIter">
+        <div *ngFor="let j of gridIter" class="d-flex">
+          <app-icon *ngIf="char1.x === j && char1.y === i" class="m-auto" [name]="'cross'" [size]="0.75"></app-icon>
+          <app-icon *ngIf="char2.x === j && char2.y === i" class="m-auto" [name]="'circle'" [size]="0.75"></app-icon>
+        </div>
+      </div>
+    </div>
+      <div class="col-3 card text-center">
+      <div class="card-body">
+        <h5 class="card-title">Character 2 Stats</h5>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-4">Name</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-8">{{ battle.moves.char2.name }}</p>
+        </div>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-4">Melee</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-8">{{ battle.moves.char2.melee }}</p>
+        </div>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-4">Ranged</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-8">{{ battle.moves.char2.ranged }}</p>
+        </div>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-4">Movement</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-8">{{ battle.moves.char2.movement }}</p>
+        </div>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-4">Defense</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-8">{{ battle.moves.char2.defense }}</p>
+        </div>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-4">HP</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-8">{{ battle.moves.char2.maxHp }}</p>
+        </div>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-4">Max Range</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-8">{{ battle.moves.char2.rangedMaxRange }}</p>
+        </div>
+        <div class="row">
+          <p class="card-subtitle mb-2 text-muted col-4">Heal</p>
+          <p class="card-subtitle mb-2 font-weight-bold col-8">{{ battle.moves.char2.healingPotency }}</p>
+        </div>
+        <div class="progress mt-5">
+          <div class="progress-bar bg-success" role="progressbar"  [ngStyle]="{'width': getHpPercentage('char2')}"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mt-5 d-flex">
+  <app-icon class="cursor-pointer mx-auto" [name]="'back'" [size]="1" routerLink="/users/me/characters">
+  </app-icon>
+</div>
