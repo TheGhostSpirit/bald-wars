@@ -14,7 +14,7 @@
             <h5 class="card-title">{{ opponent.name }}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{{ opponent.user.displayName }}</h6>
             <h6 class="card-subtitle mb-2 text-muted">{{ opponent.user.elo }}</h6>
-            <a class="card-link cursor-pointer" (click)="attack(opponent)">Attack</a>
+            <a class="card-link cursor-pointer" (click)="attack(modal, opponent)">Attack</a>
           </div>
         </div>
       </div>
@@ -36,3 +36,11 @@
     </app-icon>
   </div>
 </div>
+<ng-template #modal>
+  <app-confirmation-modal
+    [modalRef]="modalRef"
+    [data]="modalState?.opponent"
+    [message]="modalState?.message"
+    (confirmed)="confirmAttack($event)">
+  </app-confirmation-modal>
+</ng-template>

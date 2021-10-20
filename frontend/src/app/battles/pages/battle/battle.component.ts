@@ -1,7 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+
+import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { CharactersService } from 'src/app/core/services/character/characters.service';
@@ -20,6 +23,12 @@ export class MainBattleComponent implements OnInit {
 
   @ViewChild('tabSet') tabset: TabsetComponent;
 
+  modalRef?: BsModalRef<unknown>;
+  modalState?: {
+    message: string;
+    opponent: Opponent;
+  };
+
   opponents: Opponent[] = [];
   battles: Battle[] = [];
   myCharacters: Character[] = [];
@@ -29,7 +38,8 @@ export class MainBattleComponent implements OnInit {
   constructor(
     private characterService: CharactersService,
     private auth: AuthService,
-    private battleService: BattlesService
+    private battleService: BattlesService,
+    private modal: BsModalService
   ) {}
 
   ngOnInit(): void {
@@ -45,7 +55,15 @@ export class MainBattleComponent implements OnInit {
     });
   }
 
-  attack(opponent: Opponent) {
+  attack(template: TemplateRef<ConfirmationModalComponent>, opponent: Opponent) {
+    this.modalState = {
+      message: `Are you sure you want to confirm the attack of "${opponent.name}"?`,
+      opponent
+    };
+    this.modalRef = this.modal.show(template);
+  }
+
+  confirmAttack(opponent: Opponent) {
     this.battleService.launch(this.formControl.value.id, opponent.id).subscribe(() => {
       this.battleService.find().subscribe(res => {
         this.battles = res;
