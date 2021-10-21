@@ -14,32 +14,50 @@ const routes: Route[] = [
   {
     method: 'get',
     path: '/users/:email/characters',
-    handler: charactersController.findAllOfUser
+    handler: charactersController.findAllOfUser,
+    options: {
+      authenticate: true
+    }
   },
   {
     method: 'get',
     path: '/users/:email/opponents',
-    handler: charactersController.findOpponents
+    handler: charactersController.findOpponents,
+    options: {
+      authenticate: true
+    }
   },
   {
     method: 'get',
     path: '/users/:email/characters/:id',
-    handler: charactersController.findOneOfUser
+    handler: charactersController.findOneOfUser,
+    options: {
+      authenticate: true
+    }
   },
   {
     method: 'post',
     path: '/users/:email/characters',
-    handler: charactersController.create
+    handler: charactersController.create,
+    options: {
+      authenticate: true
+    }
   },
   {
     method: 'put',
     path: '/users/:email/characters/:id',
-    handler: charactersController.update
+    handler: charactersController.update,
+    options: {
+      authenticate: true
+    }
   },
   {
     method: 'delete',
     path: '/users/:email/characters/:id',
-    handler: charactersController.remove
+    handler: charactersController.remove,
+    options: {
+      authenticate: true
+    }
   }
 ];
 

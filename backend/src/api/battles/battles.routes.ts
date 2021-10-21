@@ -14,7 +14,10 @@ const routes: Route[] = [
   {
     method: 'post',
     path: '/',
-    handler: battlesController.create
+    handler: battlesController.create,
+    options: {
+      authenticate: true
+    }
   }
 ];
 

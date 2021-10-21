@@ -9,7 +9,10 @@ const routes: Route[] = [
   {
     method: 'get',
     path: '/users/:email/characters/:id/analysis',
-    handler: qualityController.analyse
+    handler: qualityController.analyse,
+    options: {
+      authenticate: true
+    }
   }
 ];
 

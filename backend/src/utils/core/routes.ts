@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 
-import { connectDatabase, authenticate } from '../../middlewares';
+import { connectDatabase, authenticate, noOp } from '../../middlewares';
 
 /**
  * Represents the possible values for the API's endpoints HTTP methods.
@@ -11,7 +11,7 @@ export type HttpMethod = 'get' | 'post' | 'put' | 'delete' | 'patch';
  * Represents a configurable object you can pass to a Route to define specific behavior.
  */
 export interface RouteOptions {
-  update?: boolean;
+  authenticate?: boolean;
 }
 
 /**
@@ -44,7 +44,7 @@ export const buildRoutes = (paths: Path[]): Router => {
     p.routes.forEach(r => {
       router[r.method](
         p.path + r.path,
-        authenticate(),
+        r?.options?.authenticate ? authenticate() : noOp,
         connectDatabase(r.handler),
         (request: Request, response: Response) => response.json(request.app.locals.result)
       );
